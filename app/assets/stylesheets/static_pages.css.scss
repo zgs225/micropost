@@ -1,3 +1,86 @@
-// Place all the styles related to the StaticPages controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@import 'bootstrap';
+@import url(http://fonts.googleapis.com/css?family=Hammersmith+One);
+
+// 用于元素间距
+$element-spacing-default: 10px;
+$element-spacing-small: 5px;
+$element-spacing-large: 15px;
+
+$font-family-default: Helvetica, Tahoma, Arial, STXiHei, "华文细黑", "Microsoft YaHei", "微软雅黑", serif;
+
+body {
+  padding-top: 60px;
+  font-family: $font-family-default;
+
+  #logo {
+    color: darken(white, 15%);
+    font-size: $font-size-h3;
+    letter-spacing: 1px;
+    font-family: 'Hammersmith One', sans-serif;
+    > span {
+      color: $brand-danger;
+    }
+    &:hover {
+      color: white;
+    }
+    &:first-letter:hover {
+      color: lighten($brand-danger, 15%);
+    }
+  }
+
+  .welcome {
+    h1, h2, h3, h4, h5, h6 {
+      font-family: $font-family-default;
+    }
+    h1 {
+      margin-bottom: $padding-base-horizontal;
+    }
+    h2 {
+      font-size: $font-size-large;
+      color: $gray-light;
+    }
+  }
+
+  .footer {
+    color: $gray;
+    padding-top: $element-spacing-large;
+    border-top: 1px solid $gray-lighter;
+    a {
+      color: $gray;
+      text-decoration: none;
+      &:hover {
+        color: lighten($gray, 15%);
+      }
+    }
+    nav {
+      float: right;
+      li {
+        display: block;
+        float: left;
+        width: 50px;
+      }
+    }
+  }
+}
+
+@media(max-width: $screen-sm) {
+  .navbar-custom {
+    .navbar-header {
+      display: inline-block;
+    }
+
+    .navbar-right {
+      display: inline-block;
+      float: right;
+      margin-top: $element-spacing-default;
+      .nav {
+        li  {
+          display: inline;
+          a {
+            display: inline;
+          }
+        }
+      }
+    }
+  }
+}
