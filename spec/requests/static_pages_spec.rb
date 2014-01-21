@@ -11,7 +11,7 @@ describe "静态页面" do
 
     it "需要有正确的首页标题" do
       visit '/static_pages/home'
-      expect(page).to have_title("#{base_title} | 首页")
+      expect(page).to have_title("#{base_title}")
     end
   end
 
