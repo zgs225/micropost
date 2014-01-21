@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe "静态页面" do
+  let(:base_title) { "易博" }
 
   describe "首页" do
     it "需要包含标题 ‘易博’" do
@@ -10,7 +11,7 @@ describe "静态页面" do
 
     it "需要有正确的首页标题" do
       visit '/static_pages/home'
-      expect(page).to have_title("易博 | 首页")
+      expect(page).to have_title("#{base_title} | 首页")
     end
   end
 
@@ -22,7 +23,7 @@ describe "静态页面" do
 
     it "需要有正确的帮助页面标题" do
       visit '/static_pages/help'
-      expect(page).to have_title('易博 | 帮助')
+      expect(page).to have_title("#{base_title} | 帮助")
     end
   end
 
@@ -34,7 +35,19 @@ describe "静态页面" do
 
     it "需要有正确的关于页面标题" do
       visit '/static_pages/about'
-      expect(page).to have_title('易博 | 关于')
+      expect(page).to have_title("#{base_title} | 关于")
+    end
+  end
+
+  describe "联系页面" do
+    it "需要包含标题‘联系’" do
+      visit '/static_pages/contact'
+      expect(page).to have_content('联系')
+    end
+
+    it "需要有正确的联系页面标题" do
+      visit '/static_pages/contact'
+      expect(page).to have_title("#{base_title} | 联系")
     end
   end
 end
