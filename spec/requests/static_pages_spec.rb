@@ -1,53 +1,34 @@
 require 'spec_helper'
 
 describe "静态页面" do
-  let(:base_title) { "易博" }
+  subject { page }
 
   describe "首页" do
-    it "需要包含标题 ‘易博’" do
-      visit root_path
-      expect(page).to have_content('易博')
-    end
+    before { visit root_path }
 
-    it "需要有正确的首页标题" do
-      visit root_path
-      expect(page).to have_title("#{base_title}")
-    end
+    it { should have_content('易博') }
+    it { should have_title(full_title('')) }
+    it { should_not have_title(' | Home') }
   end
 
   describe "帮助页面" do
-    it "需要包含标题 ‘帮助’" do
-      visit help_path
-      expect(page).to have_content('帮助')
-    end
+    before { visit help_path }
 
-    it "需要有正确的帮助页面标题" do
-      visit help_path
-      expect(page).to have_title("#{base_title} | 帮助")
-    end
+    it { should have_content('帮助') }
+    it { should have_title(full_title('帮助')) }
   end
 
   describe "关于页面" do
-    it "需要包含标题 ‘关于’" do
-      visit about_path
-      expect(page).to have_content('关于')
-    end
+    before { visit about_path }
 
-    it "需要有正确的关于页面标题" do
-      visit about_path
-      expect(page).to have_title("#{base_title} | 关于")
-    end
+    it { should have_content('关于') }
+    it { should have_title(full_title('关于')) }
   end
 
   describe "联系页面" do
-    it "需要包含标题‘联系’" do
-      visit contact_path
-      expect(page).to have_content('联系')
-    end
+    before { visit contact_path }
 
-    it "需要有正确的联系页面标题" do
-      visit contact_path
-      expect(page).to have_title("#{base_title} | 联系")
-    end
+    it { should have_content('联系') }
+    it { should have_title(full_title('联系')) }
   end
 end
