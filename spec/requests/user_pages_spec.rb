@@ -6,7 +6,7 @@ describe "用户页面" do
   describe "注册页面" do
     before { visit signup_path }
 
-    it { should have_content('注册') }
+    it { should have_selector('h1', text: '注册') }
     it { should have_title(full_title('注册')) }
   end
 end
