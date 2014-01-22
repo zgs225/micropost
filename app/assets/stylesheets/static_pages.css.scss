@@ -66,19 +66,19 @@ body {
 @media(max-width: $screen-sm) {
   .navbar-custom {
     .navbar-header {
-      display: inline-block;
+      display: block;
+      float: left;
     }
 
     .navbar-right {
-      display: inline-block;
+      display: block;
       float: right;
-      margin-top: $element-spacing-default;
       .nav {
-        li  {
-          display: inline;
-          a {
-            display: inline;
-          }
+        display: block;
+        float: left;
+        li {
+          display: block;
+          float: left;
         }
       }
     }
