@@ -35,11 +35,13 @@ end
 group :development, :test do
   gem 'sqlite3'
   gem 'rspec-rails'
+  # gem 'debugger'
 end
 
 group :test do
   gem 'selenium-webdriver'
   gem 'capybara'
+  gem 'factory_girl_rails'
 end
 
 group :production do
@@ -56,4 +58,3 @@ gem 'bcrypt-ruby', '~> 3.1.2'
 # gem 'capistrano', group: :development
 
 # Use debugger
-# gem 'debugger', group: [:development, :test]

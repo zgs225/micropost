@@ -1,0 +1,25 @@
+<%= form_for @user, html: { role: "form" } do |f| %>
+    <div class="form-group <%= add_class_if_has_error(@user, :name) %>">
+        <%= f.label :name, "姓名", class: "control-label" %>
+        <%= f.text_field :name, class: "form-control" %>
+        <%= error_message_for(@user, :name) %>
+    </div>
+    <div class="form-group <%= add_class_if_has_error(@user, :email) %>">
+        <%= f.label :email, "邮箱", class: "control-label" %>
+        <%= f.text_field :email, class: "form-control" %>
+        <%= error_message_for(@user, :email) %>
+    </div>
+    <div class="form-group <%= add_class_if_has_error(@user, :password) %>">
+        <%= f.label :password, "密码", class: "control-label" %>
+        <%= f.password_field :password, class: "form-control" %>
+        <%= error_message_for(@user, :password) %>
+    </div>
+    <div class="form-group <%= add_class_if_has_error(@user, :password_confirmation) %>">
+        <%= f.label :password_confirmation, "确认", class: "control-label" %>
+        <%= f.password_field :password_confirmation, class: "form-control" %>
+        <%= error_message_for(@user, :password_confirmation) %>
+    </div>
+    <div class="form-group">
+        <%= f.submit "注册", class: "btn btn-default btn-primary" %>
+    </div>
+<% end %>
