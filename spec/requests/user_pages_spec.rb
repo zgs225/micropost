@@ -27,6 +27,16 @@ describe "用户页面" do
         it "创建了用户" do
             expect { click_button submit }.to change(User, :count).by(1)
         end
+
+        describe "注册成功后自动登陆" do
+          before { click_button submit }
+          
+          let(:user) { User.find_by(email: "zgs225@gmail.com") }
+
+          it { should have_link("注销") }
+          it { should have_title(user.name) }
+          it { should have_content("欢迎") }
+        end
     end
   end
 

@@ -11,8 +11,9 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      redirect_to @user
+      sign_in @user
       flash[:success] = "#{@user.name}，欢迎使用易博！"
+      redirect_to @user
     else
       render 'new'
     end
