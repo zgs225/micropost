@@ -56,7 +56,7 @@ describe "静态页面" do
     click_link "联系"
     expect(page).to have_title(full_title('联系'))
 
-    click_link "登陆"
-    expect(page).to have_title(full_title("登陆"))
+    click_link "登录"
+    expect(page).to have_title(full_title("登录"))
   end
 end

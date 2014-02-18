@@ -99,7 +99,7 @@ describe User do
         it { should_not be_valid }
     end
 
-    describe "记住登陆状态" do
+    describe "记住登录状态" do
       before { @user.save }
       its(:remember_token) { should_not be_blank }
     end
