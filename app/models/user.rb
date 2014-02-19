@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
     before_save { self.email = email.downcase }
     before_create :create_remember_token
 
+    has_many :posts, dependent: :destroy
+
     validates :name, presence: true, length: { maximum: 50 }
     # 在ruby 的正则表达式中\A 代表 ^，\z 代表 $
     VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

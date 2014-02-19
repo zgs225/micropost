@@ -15,6 +15,8 @@ describe User do
     it { should respond_to(:password_confirmation) }
     it { should respond_to(:authenticate) }
     it { should respond_to(:remember_token) }
+    it { should respond_to :admin }
+    it { should respond_to :posts }
 
     it { should be_valid }
 
@@ -102,5 +104,19 @@ describe User do
     describe "记住登录状态" do
       before { @user.save }
       its(:remember_token) { should_not be_blank }
+    end
+
+    describe "用户与微博关联" do
+      let(:user) { FactoryGirl.create(:user) }
+      let!(:older_post) do
+        FactoryGirl.create(:post, user: user, created_at: 1.day.ago)
+      end
+      let!(:newer_post) do
+        FactoryGirl.create(:post, user: user, created_at: 1.hour.ago)
+      end
+
+      it "取出博客时按时间倒序排列" do
+        expect(user.posts.to_a).to eq [ newer_post, older_post ]
+      end
     end
 end
