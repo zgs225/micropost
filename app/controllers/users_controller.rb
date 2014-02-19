@@ -2,10 +2,11 @@ class UsersController < ApplicationController
   before_action :set_user, only: [ :show ]
   before_action :need_signed_in, only: [ :edit, :update, :index ]
   before_action :correct_user, only: [ :edit, :update ]
+  before_action :admin_user, only: [ :destroy ]
+  before_action :signed_in_user_not_signup, only: [ :new, :create ]
 
   def new
-    # @users = User.paginate(page: params[:page])
-    @users = User.all
+    @user = User.new
   end
 
   def show
@@ -15,7 +16,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.all
+    @users = User.paginate(page: params[:page])
   end
 
   def update
@@ -39,6 +40,17 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    user = User.find(params[:id])
+    if current_user?(user)
+      flash[:warning] = "不能删除自己"
+    else
+      user.destroy
+      flash[:success] = "用户已删除"
+    end
+    redirect_to users_path
+  end
+
   private
     
     def user_params
@@ -60,5 +72,13 @@ class UsersController < ApplicationController
     def correct_user
       @user = User.find(params[:id])
       redirect_to root_path unless current_user?(@user)
+    end
+
+    def admin_user
+      redirect_to root_path unless current_user.admin?
+    end
+
+    def signed_in_user_not_signup 
+      redirect_to root_path if signed_in? 
     end
 end
