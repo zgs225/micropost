@@ -1,24 +1,5 @@
-  <% if signed_in? %>
-      <div class="row">
-          <aside class="col-md-4">
-            <section>
-                <%= render 'shared/user_info' %>
-            </section>
-            <section>
-                <%= render 'shared/post_form' %>
-            </section>
-          </aside>
-          <div class="col-md-8">
-              <h3>最近微博</h3>
-              <%= render 'shared/feed' %>
-          </div>
-      </div>
-  <% else %>
-      <div class="text-center jumbotron welcome">
-        <h1>欢迎来到易博</h1>
-        <h2>
-          易博是一个简易的微型博客发布平台。
-        </h2>
-        <%= link_to "现在就注册!", signup_path, class: "btn btn-default btn-lg btn-primary" %>
-      </div>
-  <% end %>
+<% if signed_in? %>
+  <%= render 'static_pages/signed_in' %>
+<% else %>
+  <%= render 'static_pages/non_signed_in' %>
+<% end %>

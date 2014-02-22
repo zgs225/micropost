@@ -1,0 +1,4 @@
+<% if current_user?(post.user) %>
+<%= link_to "删除", post, method: 'delete', 
+             data: { confirm: "确定删除？" } %>
+<% end %>
