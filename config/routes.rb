@@ -1,16 +1,17 @@
 Micropost::Application.routes.draw do
   root 'static_pages#home'
 
-  get 'help'    => 'static_pages#help'
-  get 'about'   => 'static_pages#about'
-  get 'contact' => 'static_pages#contact'
-  get 'signup'  => 'users#new'
+  get 'help'       => 'static_pages#help'
+  get 'about'      => 'static_pages#about'
+  get 'contact'    => 'static_pages#contact'
+  get 'signup'     => 'users#new'
 
-  get 'signin'  => 'sessions#new'
+  get 'signin'     => 'sessions#new'
   delete 'signout' => 'sessions#destroy'
 
   resources :users
   resources :sessions, only: [ :new, :create, :destroy ]
+  resources :posts,    only: [ :create, :destroy ]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

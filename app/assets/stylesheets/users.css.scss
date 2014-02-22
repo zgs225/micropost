@@ -26,7 +26,6 @@ aside {
 
 .gravatar {
     float: left;
-    margin-left: 10px;
     margin-right: 10px;
 }
 
@@ -39,6 +38,24 @@ aside {
     border-top: 1px solid #eee;
     &:last-child {
       border-bottom: 1px solid #eee;
+    }
+  }
+}
+
+.posts {
+  list-style: none;
+  margin: 10px 0 0 0;
+  li {
+    padding: 10px 0;
+    border-top: 1px solid #e8e8e8;
+
+    .content {
+      display: block;
+    }
+
+    .timestamp {
+      font-size: 9px;
+      color: darken(#c3c3c3, 20%);
     }
   }
 }

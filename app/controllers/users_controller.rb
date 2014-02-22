@@ -10,6 +10,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @posts = @user.posts.page(params[:page])
   end
 
   def edit
@@ -59,14 +60,6 @@ class UsersController < ApplicationController
 
     def set_user
       @user = User.find(params[:id])
-    end
-
-    def need_signed_in
-      unless signed_in?
-        store_location
-        flash[:warning] = "权限不足，请登录"
-        redirect_to signin_path
-      end
     end
 
     def correct_user

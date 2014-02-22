@@ -1,0 +1,9 @@
+<%= form_for @post, html: { role: "form" } do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+    <div class="form-group <%= add_class_if_has_error(@post, :content) %>">
+        <%= f.text_area :content, placeholder: "发布一下心情吧", class: "form-control" %>
+    </div>
+    <div class="form-group">
+        <%= f.submit "发送", class: "btn btn-default btn-danger btn-lg" %>
+    </div>
+<% end %>

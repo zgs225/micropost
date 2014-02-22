@@ -1,0 +1,10 @@
+<a href="<%= user_path current_user %>">
+    <%= gravatar_for current_user, size: 60 %>
+</a>
+<h1><%= current_user.name %></h1>
+<span>
+    <%= link_to "查看我的资料", current_user %>
+</span>
+<span>
+    <%= "#{current_user.posts.count} 条微博" %>
+</span>

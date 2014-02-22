@@ -8,6 +8,13 @@ $element-spacing-large: 15px;
 
 $font-family-default: Helvetica, Tahoma, Arial, STXiHei, "华文细黑", "Microsoft YaHei", "微软雅黑", serif;
 
+a {
+  text-decoration: none;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
 body {
   padding-top: 60px;
   font-family: $font-family-default;
@@ -90,4 +97,9 @@ body {
       }
     }
   }
+}
+
+#post_content {
+  height: 100px;
+  resize: none;
 }
