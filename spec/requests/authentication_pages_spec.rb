@@ -56,6 +56,16 @@ describe "AuthenticationPages" do
       specify { expect(response).to redirect_to(signin_path) }
     end
 
+    describe "不能访问粉丝页面" do
+      before { visit followers_user_path(user) }
+      it { should have_title full_title('登录') }
+    end
+
+    describe "不能访问关注页面" do
+      before { visit following_user_path(user) }
+      it { should have_title full_title('登录') }
+    end
+
     describe "访问一个受保护的页面" do
       before do
         visit edit_user_path user

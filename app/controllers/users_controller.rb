@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [ :show ]
-  before_action :need_signed_in, only: [ :edit, :update, :index ]
-  before_action :correct_user, only: [ :edit, :update ]
-  before_action :admin_user, only: [ :destroy ]
   before_action :signed_in_user_not_signup, only: [ :new, :create ]
+  before_action :need_signed_in,            only: [ :edit, :update, :index, :destroy, :following, :followers ]
+  before_action :correct_user,              only: [ :edit, :update ]
+  before_action :admin_user,                only: [ :destroy ]
+  before_action :set_user,                  only: [ :show ]
 
   def new
     @user = User.new
@@ -50,6 +50,20 @@ class UsersController < ApplicationController
       flash[:success] = "用户已删除"
     end
     redirect_to users_path
+  end
+
+  def following
+    @title = '我关注的人'
+    @user  = User.find params[:id]
+    @users = @user.followed_users.page(params[:page])
+    render 'show_follow'
+  end
+
+  def followers
+    @title = '我的粉丝'
+    @user  = User.find params[:id]
+    @users = @user.followers.page(params[:page])
+    render 'show_follow'
   end
 
   private

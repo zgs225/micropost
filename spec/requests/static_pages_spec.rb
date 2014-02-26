@@ -59,4 +59,15 @@ describe "静态页面" do
     click_link "登录"
     expect(page).to have_title(full_title("登录"))
   end
+
+  describe "显示粉丝数和关注数" do
+    let(:user) { FactoryGirl.create(:user) }
+    let(:other_user) { FactoryGirl.create(:user) }
+
+    before do
+      sign_in user
+      user.follow!(other_user)
+      visit root_path
+    end
+  end
 end

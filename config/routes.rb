@@ -1,4 +1,6 @@
 Micropost::Application.routes.draw do
+  get "relationships/create"
+  get "relationships/destroy"
   root 'static_pages#home'
 
   get 'help'       => 'static_pages#help'
@@ -9,9 +11,14 @@ Micropost::Application.routes.draw do
   get 'signin'     => 'sessions#new'
   delete 'signout' => 'sessions#destroy'
 
-  resources :users
-  resources :sessions, only: [ :new, :create, :destroy ]
-  resources :posts,    only: [ :create, :destroy ]
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
+  resources :relationships, only: [ :create, :destroy ]
+  resources :sessions,      only: [ :create, :destroy, :new ]
+  resources :posts,         only: [ :create, :destroy ]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

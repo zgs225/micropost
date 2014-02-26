@@ -119,4 +119,34 @@ describe User do
         expect(user.posts.to_a).to eq [ newer_post, older_post ]
       end
     end
+
+    it { should respond_to :followed_users }
+    it { should respond_to :followers }
+    it { should respond_to :following? }
+    it { should respond_to :follow! }
+
+    describe "关注一个用户" do
+      let(:other_user) { FactoryGirl.create(:user) }
+
+      before do
+        @user.save
+        @user.follow!(other_user)
+      end
+
+      it { should be_following(other_user) }
+      its(:followed_users) { should include(other_user) }
+
+      describe "取消关注一个用户" do
+        before { @user.unfollow!(other_user) }
+        
+        it { should_not be_following(other_user) }
+        its(:followed_users) { should_not include(other_user) }
+      end
+
+      describe "用户的粉丝" do
+        subject { other_user }
+
+        its(:followers) { should include(@user) }
+      end
+    end
 end
